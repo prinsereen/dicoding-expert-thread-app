@@ -23,26 +23,33 @@ const exampleLeaderboards = [
   }
 ]
 
-const Leaderboards = () => {
+const Leaderboards = ({ leaderboards = exampleLeaderboards }) => {
   return (
-      <div>
-        <Navbar />
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold my-4">Leaderboards</h2>
-          <div className="bg-white shadow-md rounded p-4 mb-4">
-            {exampleLeaderboards.map((entry, index) => (
-              <div key={entry.user.id} className="mb-4">
-                <div className="flex items-center">
-                  <img src={entry.user.avatar} alt={entry.user.name} className="w-12 h-12 rounded-full mr-4" />
-                  <div>
-                    <h3 className="text-xl font-bold">{entry.user.name}</h3>
-                    <p className="text-gray-600">Score: {entry.score}</p>
-                  </div>
-                </div>
+    <div>
+      <Navbar />
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold my-6 text-center">Leaderboards</h2>
+        <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+          {leaderboards.map((entry, index) => (
+            <div
+              key={entry.user.id}
+              className="mb-4 p-4 bg-gray-100 hover:bg-gray-200 transition rounded-lg flex items-center"
+            >
+              <div className="flex-shrink-0">
+                <img
+                  src={entry.user.avatar}
+                  alt={entry.user.name}
+                  className="w-16 h-16 rounded-full border-2 border-blue-500"
+                />
               </div>
-            ))}
-          </div>
+              <div className="ml-4">
+                <h3 className="text-2xl font-semibold text-gray-800">{entry.user.name}</h3>
+                <p className="text-gray-600">Score: <span className="font-bold">{entry.score}</span></p>
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
     </div>
   )
 }
@@ -58,7 +65,7 @@ Leaderboards.propTypes = {
       }).isRequired,
       score: PropTypes.number.isRequired
     })
-  ).isRequired
+  )
 }
 
 export default Leaderboards
