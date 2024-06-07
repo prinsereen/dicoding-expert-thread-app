@@ -1,7 +1,12 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import useInput from '../hooks/useInput'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
+  const [email, onEmailChange] = useInput('')
+  const [password, onPasswordChange] = useInput('')
+
   return (
     <div>
       <Navbar />
@@ -16,6 +21,8 @@ const Login = () => {
               <input
                 id="email"
                 type="email"
+                value={email}
+                onChange={onEmailChange}
                 placeholder="Enter your email"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
@@ -28,12 +35,17 @@ const Login = () => {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={onPasswordChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
+              <div className="mt-2">
+              <p>Havent an account? <Link to="/register" className="text-blue-500 hover:underline font-semibold">Register</Link></p>
+              </div>
             </div>
             <div className="flex items-center justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4  rounded focus:outline-none focus:shadow-outline"
                 type="button"
               >
                 Login
