@@ -180,9 +180,9 @@ const api = (() => {
       throw new Error(message)
     }
 
-    const { data: { threads } } = responseJson
+    const { data: { comment } } = responseJson
 
-    return threads
+    return comment
   }
 
   async function getLeaderboard () {

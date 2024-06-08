@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar'
 import ThreadCard from '../components/ThreadCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { asyncPopulateUsersAndThread } from '../states/shared/action'
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 const Threads = () => {
   const dispatch = useDispatch()
@@ -16,9 +15,7 @@ const Threads = () => {
   } = useSelector((states) => states)
 
   useEffect(() => {
-    dispatch(showLoading())
     dispatch(asyncPopulateUsersAndThread())
-    dispatch(hideLoading())
   }, [dispatch])
 
   const validThreads = threads.filter(thread => thread && thread.ownerId)
