@@ -101,8 +101,25 @@ const api = (() => {
     return threads
   }
 
+  async function getAllUsers () {
+    const response = await fetch(`${BASE_URL}/users`)
+
+    const responseJson = await response.json()
+
+    const { status, message } = responseJson
+
+    if (status !== 'success') {
+      throw new Error(message)
+    }
+
+    const { data: { users } } = responseJson
+
+    return users
+  }
+
   async function getThreadDetail (id) {
     const response = await fetch(`${BASE_URL}/threads/${id}`)
+    console.log(id)
 
     const responseJson = await response.json()
 
@@ -113,18 +130,19 @@ const api = (() => {
     }
 
     const { data: { detailThread } } = responseJson
+    console.log(detailThread)
 
     return detailThread
   }
 
-  async function createThread ({ text, body, category }) {
+  async function createThread ({ title, body, category }) {
     const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        text,
+        title,
         body,
         category
       })
@@ -188,6 +206,7 @@ const api = (() => {
     getAccessToken,
     register,
     login,
+    getAllUsers,
     getOwnProfile,
     getAllThread,
     createThread,

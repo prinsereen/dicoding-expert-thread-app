@@ -14,26 +14,19 @@ function fetchThreadsActionCreator (threads) {
   }
 }
 
-function createThreadsActionCreator (threads) {
+function createThreadsActionCreator (thread) {
   return {
     type: ActionType.CREATE_THREADS,
     payload: {
-      threads
+      thread
     }
   }
 }
 
-function asyncGetThreads () {
-  return async (dispatch) => {
-    const threads = await api.getAllThread()
-    dispatch(fetchThreadsActionCreator(threads))
-  }
-}
-
-function asyncCreateThreads ({ text, body, category }) {
+function asyncCreateThreads ({ title, body, category }) {
   return async (dispatch) => {
     try {
-      const newThread = await api.createThread({ text, body, category })
+      const newThread = await api.createThread({ title, body, category })
       dispatch(createThreadsActionCreator(newThread))
     } catch (error) {
       alert(error.message)
@@ -43,6 +36,6 @@ function asyncCreateThreads ({ text, body, category }) {
 
 export {
   ActionType,
-  asyncGetThreads,
+  fetchThreadsActionCreator,
   asyncCreateThreads
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { postedAt } from '../utils'
 
 const ThreadCard = ({ thread }) => {
-  const formattedDate = new Date(thread.createdAt).toLocaleDateString()
+  const formattedDate = postedAt(thread.createdAt)
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-4">
@@ -33,7 +34,7 @@ const ThreadCard = ({ thread }) => {
           </div>
           <div>
             <span>{formattedDate}</span>
-            <span className="ml-2">| {thread.commentsCount} comments</span>
+            <span className="ml-2">| {thread.totalComments} comments</span>
           </div>
         </div>
       </div>
@@ -47,7 +48,7 @@ ThreadCard.propTypes = {
     body: PropTypes.string,
     category: PropTypes.string,
     createdAt: PropTypes.string.isRequired,
-    commentsCount: PropTypes.number.isRequired,
+    totalComments: PropTypes.number.isRequired,
     author: PropTypes.shape({
       name: PropTypes.string.isRequired,
       avatar: PropTypes.string

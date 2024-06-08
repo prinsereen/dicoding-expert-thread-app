@@ -1,33 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../components/Navbar'
+import { asyncFetchLeaderboard } from '../states/leaderboard/action'
 
-const exampleLeaderboards = [
-  {
-    user: {
-      id: 'user-1',
-      name: 'John Doe',
-      email: 'john@example.com',
-      avatar: 'https://generated-image-url.jpg'
-    },
-    score: 10
-  },
-  {
-    user: {
-      id: 'user-2',
-      name: 'Jane Doe',
-      email: 'jane@example.com',
-      avatar: 'https://generated-image-url.jpg'
-    },
-    score: 5
-  }
-]
+const Leaderboards = () => {
+  const dispatch = useDispatch()
+  const leaderboards = useSelector((state) => state.leaderboard)
 
-const Leaderboards = ({ leaderboards = exampleLeaderboards }) => {
+  useEffect(() => {
+    dispatch(asyncFetchLeaderboard())
+  }, [dispatch])
+
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 w-3/4">
         <h2 className="text-3xl font-bold my-6 text-center">Leaderboards</h2>
         <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
           {leaderboards.map((entry, index) => (
@@ -51,20 +38,6 @@ const Leaderboards = ({ leaderboards = exampleLeaderboards }) => {
         </div>
       </div>
     </div>
-  )
-}
-
-Leaderboards.propTypes = {
-  leaderboards: PropTypes.arrayOf(
-    PropTypes.shape({
-      user: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
-        avatar: PropTypes.string.isRequired
-      }).isRequired,
-      score: PropTypes.number.isRequired
-    })
   )
 }
 

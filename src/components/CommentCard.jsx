@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const CommentCard = ({ comment }) => {
-  const formattedDate = new Date(comment.createdAt).toLocaleDateString()
-
   return (
     <div className="bg-white shadow-md rounded p-4 mb-4">
       <p>{comment.content}</p>
@@ -16,7 +14,7 @@ const CommentCard = ({ comment }) => {
           />
         )}
         <span>By: {comment.owner.name}</span>
-        <span className="ml-4">{formattedDate}</span>
+        <span className="ml-4">{comment.createdAt}</span>
       </div>
     </div>
   )

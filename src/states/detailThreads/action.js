@@ -16,7 +16,7 @@ function fetchDetailThreadsActionCreator (detailThread) {
 
 function createCommentActionCreator (comment) {
   return {
-    type: ActionType.FETCH_DETAIL_THREADS,
+    type: ActionType.CREATE_COMMENT,
     payload: {
       comment
     }
@@ -26,8 +26,8 @@ function createCommentActionCreator (comment) {
 function asyncFetchDetailThreads (id) {
   return async (dispatch) => {
     try {
-      const detailThreads = await api.getThreadDetail(id)
-      dispatch(fetchDetailThreadsActionCreator(detailThreads))
+      const detailThread = await api.getThreadDetail(id)
+      dispatch(fetchDetailThreadsActionCreator(detailThread))
     } catch (error) {
       alert(error.message)
     }

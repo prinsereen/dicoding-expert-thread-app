@@ -1,19 +1,29 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 import useInput from '../hooks/useInput'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { asyncSetAuthUser } from '../states/authUser/action'
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [email, onEmailChange] = useInput('')
   const [password, onPasswordChange] = useInput('')
 
+  const onLogin = (event) => {
+    event.preventDefault()
+    const userData = { email, password }
+    dispatch(asyncSetAuthUser(userData))
+    navigate('/threads')
+  }
+
   return (
     <div>
-      <Navbar />
       <div className="container mx-auto flex justify-center items-center mt-12">
         <div className="w-full max-w-md">
           <h2 className="text-3xl font-bold text-center my-6">Login</h2>
-          <form className="bg-white rounded-lg px-8 pt-6 pb-8 mb-4">
+          <form className="bg-white rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={onLogin}>
             <div className="mb-6">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                 Email
@@ -46,7 +56,7 @@ const Login = () => {
             <div className="flex items-center justify-center">
               <button
                 className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4  rounded focus:outline-none focus:shadow-outline"
-                type="button"
+                type="submit"
               >
                 Login
               </button>

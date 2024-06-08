@@ -1,13 +1,16 @@
 import { ActionType } from './action'
 
-function threadDetailReducer (thread = [], action = {}) {
+function threadDetailReducer (state = { comments: [] }, action = {}) {
   switch (action.type) {
     case ActionType.CREATE_COMMENT:
-      return action.payload.comment
+      return {
+        ...state,
+        comments: [...state.comments, action.payload.comment]
+      }
     case ActionType.FETCH_DETAIL_THREADS:
       return action.payload.detailThread
     default:
-      return thread
+      return state
   }
 }
 

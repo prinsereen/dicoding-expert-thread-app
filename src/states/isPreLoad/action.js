@@ -1,5 +1,5 @@
 import api from '../../utils/api'
-import { setAuthUserActionCreator } from '../authUser/action_temp'
+import { setAuthUserActionCreator } from '../authUser/action'
 
 const ActionType = {
   SET_IS_PRELOAD: 'SET_IS_PRELOAD'
