@@ -8,6 +8,7 @@ import CreateThread from '../src/pages/CreateThread'
 import Leaderboards from '../src/pages/Leaderboards'
 import { useSelector, useDispatch } from 'react-redux'
 import { asyncPreloadProcess } from './states/isPreLoad/action'
+import Loading from './components/Loading'
 
 function App () {
   const {
@@ -28,6 +29,7 @@ function App () {
   if (authUser === null) {
     return (
       <>
+        <Loading />
         <main>
           <Routes>
             <Route path="/" element={<Login />} />
@@ -40,12 +42,13 @@ function App () {
 
   return (
     <>
-    <Routes>
-        <Route path="/threads" element={<Threads/>} />
-        <Route path="/threads/:id" element={<ThreadDetail/>} />
-        <Route path="/create-thread" element={<CreateThread/>} />
-        <Route path="/leaderboards" element={<Leaderboards/>} />
-    </Routes>
+      <Loading />
+      <Routes>
+          <Route path="/threads" element={<Threads/>} />
+          <Route path="/threads/:id" element={<ThreadDetail/>} />
+          <Route path="/create-thread" element={<CreateThread/>} />
+          <Route path="/leaderboards" element={<Leaderboards/>} />
+      </Routes>
     </>
   )
 }

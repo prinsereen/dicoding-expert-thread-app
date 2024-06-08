@@ -3,6 +3,7 @@ import useInput from '../hooks/useInput'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { asyncSetAuthUser } from '../states/authUser/action'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -12,10 +13,12 @@ const Login = () => {
   const [password, onPasswordChange] = useInput('')
 
   const onLogin = (event) => {
+    dispatch(showLoading())
     event.preventDefault()
     const userData = { email, password }
     dispatch(asyncSetAuthUser(userData))
     navigate('/threads')
+    dispatch(hideLoading())
   }
 
   return (

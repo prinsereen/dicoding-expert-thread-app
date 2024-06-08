@@ -22,7 +22,7 @@ const ThreadDetail = () => {
     e.preventDefault()
     if (!comment.trim()) return
     try {
-      await dispatch(asyncCreateComment({ id, content: comment }))
+      dispatch(asyncCreateComment({ id, content: comment }))
       setComment('')
     } catch (error) {
       alert(error.message)
