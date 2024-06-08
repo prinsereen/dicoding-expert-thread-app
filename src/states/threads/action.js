@@ -26,14 +26,14 @@ function createThreadsActionCreator (thread) {
 
 function asyncCreateThreads ({ title, body, category }) {
   return async (dispatch) => {
-    dispatch(showLoading)
+    dispatch(showLoading())
     try {
       const newThread = await api.createThread({ title, body, category })
       dispatch(createThreadsActionCreator(newThread))
     } catch (error) {
       alert(error.message)
     }
-    dispatch(hideLoading)
+    dispatch(hideLoading())
   }
 }
 

@@ -16,13 +16,13 @@ function receiveUsersActionCreator (users) {
 
 function asyncRegisterUser ({ email, name, password }) {
   return async (dispatch) => {
-    dispatch(showLoading)
+    dispatch(showLoading())
     try {
       await api.register({ email, name, password })
     } catch (error) {
       alert(error.message)
     }
-    dispatch(hideLoading)
+    dispatch(hideLoading())
   }
 }
 

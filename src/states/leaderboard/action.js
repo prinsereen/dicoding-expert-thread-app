@@ -16,14 +16,14 @@ function fetchLeaderboardActionCretaor (leaderboard) {
 
 function asyncFetchLeaderboard () {
   return async (dispatch) => {
-    dispatch(showLoading)
+    dispatch(showLoading())
     try {
       const leaderboards = await api.getLeaderboard()
       dispatch(fetchLeaderboardActionCretaor(leaderboards))
     } catch (error) {
       alert(error.message)
     }
-    dispatch(hideLoading)
+    dispatch(hideLoading())
   }
 }
 
