@@ -64,7 +64,7 @@ const Register = () => {
               />
             </div>
             <div className="mt-2 mb-4">
-              <p>Have an account? <Link to="/" className="text-blue-500 hover:underline font-semibold">Login</Link></p>
+              <p>Punya akun ? <Link to="/" className="text-blue-500 hover:underline font-semibold">Login</Link></p>
               </div>
             <div className="flex items-center justify-center">
               <button
