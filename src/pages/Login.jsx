@@ -53,7 +53,7 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
               <div className="mt-2">
-              <p>Havent an account? <Link to="/register" className="text-blue-500 hover:underline font-semibold">Register</Link></p>
+              <p>Tidak Punya Akun ? <Link to="/register" className="text-blue-500 hover:underline font-semibold">Register</Link></p>
               </div>
             </div>
             <div className="flex items-center justify-center">
