@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Register from '../src/pages/Register'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from '../src/pages/Login'
 import Threads from '../src/pages/Threads'
 import ThreadDetail from '../src/pages/ThreadDetail'
@@ -44,6 +44,7 @@ function App () {
     <>
       <Loading />
       <Routes>
+          <Route path="/" element={<Navigate to="/threads" />} />
           <Route path="/threads" element={<Threads/>} />
           <Route path="/threads/:id" element={<ThreadDetail/>} />
           <Route path="/create-thread" element={<CreateThread/>} />
